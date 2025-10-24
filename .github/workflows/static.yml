@@ -30,6 +30,7 @@ jobs:
         run: |
           mkdir public
           unzip *.zip -d public
+          mv public/platformerv2.html public/index.html
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
