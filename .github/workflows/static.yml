@@ -29,7 +29,7 @@ jobs:
       - name: Unzip the HTML5 export
         run: |
           mkdir public
-          unzip "${{ steps.download.outputs.asset_path }}" -d public
+          unzip *.zip -d public
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
