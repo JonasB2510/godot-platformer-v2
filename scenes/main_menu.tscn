@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp6r8oclvyk1u"]
+
+[ext_resource type="FontFile" uid="uid://dnxlscub8ly7q" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://xux3xfr3ypdx" path="res://assets/fonts/PixelOperator8.ttf" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://b2lry5nlinahf" path="res://scripts/main_menu.gd" id="3_bqqt6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameName" type="Label" parent="."]
+z_index = 5
+layout_mode = 0
+offset_left = 34.0
+offset_top = 26.0
+offset_right = 1005.0
+offset_bottom = 157.0
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 64
+text = "Godot - Platformer V2"
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.306
+anchor_bottom = 1.0
+offset_right = 0.487976
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 24.0
+offset_top = 240.0
+offset_right = 331.0
+offset_bottom = 293.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "START"
+script = ExtResource("3_bqqt6")
+
+[node name="Option" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 23.0
+offset_top = 326.0
+offset_right = 330.0
+offset_bottom = 379.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "OPTION"
+
+[node name="Exit" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 23.0
+offset_top = 411.0
+offset_right = 330.0
+offset_bottom = 464.0
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "EXIT"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="Panel"]
+position = Vector2i(130, 285)
+
+[connection signal="pressed" from="Panel/Start" to="Panel/Start" method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/Option" to="Panel/Start" method="_on_option_pressed"]
+[connection signal="pressed" from="Panel/Exit" to="Panel/Start" method="_on_exit_pressed"]
