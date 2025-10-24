@@ -22,6 +22,7 @@ jobs:
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           repo: ${{ github.repository }}
+          regex: true
           file: "web.*\\.zip"
           token: ${{ secrets.TOKEN }}
 
