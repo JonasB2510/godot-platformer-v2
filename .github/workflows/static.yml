@@ -23,7 +23,7 @@ jobs:
         with:
           repo: ${{ github.repository }}
           file: "web*.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
 
       - name: Unzip the HTML5 export
         run: |
