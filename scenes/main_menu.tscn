@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp6r8oclvyk1u"]
+[gd_scene load_steps=11 format=3 uid="uid://cp6r8oclvyk1u"]
 
 [ext_resource type="FontFile" uid="uid://dnxlscub8ly7q" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_l6cm7"]
 [ext_resource type="FontFile" uid="uid://xux3xfr3ypdx" path="res://assets/fonts/PixelOperator8.ttf" id="2_ekxnf"]
@@ -7,6 +7,9 @@
 [ext_resource type="StyleBox" uid="uid://gcex4d8ps4va" path="res://styles/button_style_1.tres" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://bpqhar0n4lhd3" path="res://assets/sprites/world_tileset.png" id="6_rtw2f"]
 [ext_resource type="PackedScene" uid="uid://drtyq74khqysj" path="res://scenes/player.tscn" id="7_oa1go"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oa1go"]
 texture = ExtResource("6_rtw2f")
@@ -184,15 +187,19 @@ grow_vertical = 2
 
 [node name="GameName" type="Label" parent="."]
 z_index = 5
-layout_mode = 0
-offset_left = 34.0
-offset_top = 26.0
-offset_right = 1005.0
-offset_bottom = 157.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -485.5
+offset_right = 485.5
+offset_bottom = 131.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_l6cm7")
 theme_override_font_sizes/font_size = 64
-text = "Godot - Platformer V2"
-autowrap_mode = 2
+text = "Godot Platformer V2"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -202,6 +209,7 @@ anchor_bottom = 1.0
 offset_right = 0.487976
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oa1go")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -215,8 +223,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/hover = ExtResource("3_8ln24")
 theme_override_styles/normal = ExtResource("4_rtw2f")
+theme_override_styles/hover = ExtResource("3_8ln24")
 text = "START"
 script = ExtResource("3_bqqt6")
 
@@ -225,8 +233,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/hover = ExtResource("3_8ln24")
 theme_override_styles/normal = ExtResource("4_rtw2f")
+theme_override_styles/hover = ExtResource("3_8ln24")
 text = "OPTION"
 
 [node name="Exit" type="Button" parent="Panel/VBoxContainer"]
@@ -234,8 +242,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/hover = ExtResource("3_8ln24")
 theme_override_styles/normal = ExtResource("4_rtw2f")
+theme_override_styles/hover = ExtResource("3_8ln24")
 text = "EXIT"
 
 [node name="AcceptDialog" type="AcceptDialog" parent="Panel/VBoxContainer"]
