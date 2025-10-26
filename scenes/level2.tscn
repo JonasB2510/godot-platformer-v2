@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://o0qmqwsj3abf"]
+[gd_scene load_steps=14 format=3 uid="uid://o0qmqwsj3abf"]
 
 [ext_resource type="Script" uid="uid://bsuk8of6wkhd3" path="res://scripts/game_manager.gd" id="1_bo4dx"]
 [ext_resource type="Texture2D" uid="uid://bpqhar0n4lhd3" path="res://assets/sprites/world_tileset.png" id="2_76toy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://caa2urqnlj1ct" path="res://scenes/platform.tscn" id="6_cleqw"]
 [ext_resource type="FontFile" uid="uid://xux3xfr3ypdx" path="res://assets/fonts/PixelOperator8.ttf" id="8_g8vcy"]
 [ext_resource type="FontFile" uid="uid://dnxlscub8ly7q" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_cqal4"]
+[ext_resource type="PackedScene" uid="uid://b26div2mb2lvl" path="res://scenes/slime.tscn" id="10_bo4dx"]
 [ext_resource type="PackedScene" uid="uid://ck0ofdqxqu4fv" path="res://scenes/level_exit.tscn" id="10_o3sye"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
@@ -194,6 +195,7 @@ layer_1/name = "Mid"
 layer_1/tile_data = PackedInt32Array(131071, 0, 0, 65536, 0, 0, 196607, 0, 1, 262143, 0, 1, 327679, 0, 1, 262144, 65536, 0, 196608, 0, 1, 131072, 0, 1, 327680, 0, 1, 393215, 0, 1, 393214, 65536, 1, 393213, 0, 1, 327677, 0, 1, 327678, 0, 1, 262141, 0, 0, 262142, 0, 0, 196606, 65536, 0, 196605, 65536, 6, -262100, 327680, 1, -262101, 262144, 1, -262102, 262144, 1, -327638, 262144, 1, -327637, 262144, 0, -327636, 262144, 0, -393176, 262144, 1, -327640, 262144, 1, -393175, 262144, 1, -327639, 327680, 0, -393174, 262144, 0, -458714, 262144, 0, -393178, 262144, 1, -458713, 262144, 0, -393177, 262144, 1, -458712, 262144, 0, -458711, 262144, 0, -458710, 327680, 5, -524246, 327680, 4, -589782, 327680, 3, -524248, 262144, 8, -393184, 327680, 0, -393183, 262144, 1, -393182, 262144, 1, -393181, 262144, 1, -393180, 327680, 1, -393179, 262144, 1, -720865, 262144, 1, -655329, 262144, 1, -589793, 262144, 1, -524257, 262144, 1, -458721, 262144, 1, -393185, 262144, 1, -458720, 262144, 0, -458719, 262144, 0, -458718, 262144, 0, -458717, 262144, 0, -458716, 262144, 0, -458715, 262144, 0, -327649, 262144, 1, -327648, 262144, 1, -327647, 262144, 1, -655330, 327680, 0, -589794, 262144, 1, -524258, 262144, 1, -458722, 262144, 1, -393186, 327680, 1, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 65555, 0, 0, 65556, 0, 0, 65557, 0, 0, 65558, 0, 0, 65559, 0, 0, 65560, 0, 0, 65561, 0, 0, 65562, 0, 0, 65563, 0, 0, 65564, 0, 0, 65565, 0, 0, 65566, 0, 0, 65567, 0, 0, 65568, 0, 0, 65569, 0, 0, 65570, 0, 0, 65571, 0, 0, 65572, 0, 0, 65573, 0, 0, 65574, 0, 0, 65575, 0, 0, 65576, 0, 0, 65577, 0, 0, 65578, 0, 0, 65579, 0, 0, 65580, 0, 0, 65581, 0, 0, 65582, 0, 0, 47, 0, 0, -65488, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_8g4ke")]
+unique_name_in_owner = true
 position = Vector2(0, 5)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -246,3 +248,6 @@ nextLevel = "res://scenes/main_menu.tscn"
 
 [node name="Platform" parent="." instance=ExtResource("6_cleqw")]
 position = Vector2(744, -44)
+
+[node name="Slime" parent="." instance=ExtResource("10_bo4dx")]
+position = Vector2(71, -2)
