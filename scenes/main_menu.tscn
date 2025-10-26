@@ -223,8 +223,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("4_rtw2f")
 theme_override_styles/hover = ExtResource("3_8ln24")
+theme_override_styles/normal = ExtResource("4_rtw2f")
 text = "START"
 script = ExtResource("3_bqqt6")
 
@@ -233,8 +233,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("4_rtw2f")
 theme_override_styles/hover = ExtResource("3_8ln24")
+theme_override_styles/normal = ExtResource("4_rtw2f")
 text = "OPTION"
 
 [node name="Exit" type="Button" parent="Panel/VBoxContainer"]
@@ -242,8 +242,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("4_rtw2f")
 theme_override_styles/hover = ExtResource("3_8ln24")
+theme_override_styles/normal = ExtResource("4_rtw2f")
 text = "EXIT"
 
 [node name="AcceptDialog" type="AcceptDialog" parent="Panel/VBoxContainer"]
