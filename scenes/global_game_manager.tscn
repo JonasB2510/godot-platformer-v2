@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://qfcjmp86ou15"]
+
+[ext_resource type="Script" uid="uid://bog0144kcfdfv" path="res://global_game_manager.gd" id="1_vhfao"]
+
+[node name="GlobalGameManager" type="Node"]
+script = ExtResource("1_vhfao")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

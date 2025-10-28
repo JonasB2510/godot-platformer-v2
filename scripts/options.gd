@@ -6,6 +6,19 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	load_config()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		var config = ConfigFile.new()
+		config.set_value("volume", "master", master_slider.value)
+		config.set_value("volume", "music", music_slider.value)
+		config.set_value("volume", "sfx", sfx_slider.value)
+		config.save("user://settings.cfg")
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func load_config():
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
 
@@ -25,29 +38,21 @@ func _ready() -> void:
 
 	var master_volume = config.get_value("volume", "master", 100)
 	master_slider.set_value_no_signal(master_volume)
-	set_bus_volume_percent("Master", master_volume)
+	#set_bus_volume_percent("Master", master_volume)
 	var music_volume = config.get_value("volume", "music", 100)
 	music_slider.set_value_no_signal(music_volume)
-	set_bus_volume_percent("Music", music_volume)
+	#set_bus_volume_percent("Music", music_volume)
 	var sfx_volume = config.get_value("volume", "sfx", 100)
 	sfx_slider.set_value_no_signal(sfx_volume)
-	set_bus_volume_percent("SFX", sfx_volume)
+	#set_bus_volume_percent("SFX", sfx_volume)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		var config = ConfigFile.new()
-		config.set_value("volume", "master", master_slider.value)
-		config.set_value("volume", "music", music_slider.value)
-		config.set_value("volume", "sfx", sfx_slider.value)
-		config.save("user://settings.cfg")
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	
 func set_bus_volume_percent(bus_name: String, percent: float) -> void:
 	percent = clamp(percent, 0.0, 100.0)
 	
 	# Map 0–100% directly to -80 dB to 0 dB
-	var db = lerp(-80.0, 0.0, percent / 100.0)
+	var db = lerp(-10.0, 6.0, percent / 100.0)
+	if percent == 0:
+		db = -80
 	
 	var bus_index = AudioServer.get_bus_index(bus_name)
 	AudioServer.set_bus_volume_db(bus_index, db)

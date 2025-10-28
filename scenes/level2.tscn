@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://o0qmqwsj3abf"]
+[gd_scene load_steps=15 format=3 uid="uid://o0qmqwsj3abf"]
 
 [ext_resource type="Script" uid="uid://bsuk8of6wkhd3" path="res://scripts/game_manager.gd" id="1_bo4dx"]
 [ext_resource type="Texture2D" uid="uid://bpqhar0n4lhd3" path="res://assets/sprites/world_tileset.png" id="2_76toy"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://dnxlscub8ly7q" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_cqal4"]
 [ext_resource type="PackedScene" uid="uid://b26div2mb2lvl" path="res://scenes/slime.tscn" id="10_bo4dx"]
 [ext_resource type="PackedScene" uid="uid://ck0ofdqxqu4fv" path="res://scenes/level_exit.tscn" id="10_o3sye"]
+[ext_resource type="PackedScene" uid="uid://54fftvwvyc7x" path="res://scenes/spike.tscn" id="11_76toy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_76toy")
@@ -251,3 +252,6 @@ position = Vector2(744, -44)
 
 [node name="Slime" parent="." instance=ExtResource("10_bo4dx")]
 position = Vector2(71, -2)
+
+[node name="Spike" parent="." instance=ExtResource("11_76toy")]
+position = Vector2(103, 16)
