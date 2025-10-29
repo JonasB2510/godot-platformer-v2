@@ -9,7 +9,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.3  # Run inside Godot 4.3 Docker container
+      image: barichello/godot-ci:4.3  # Godot 4.3 + export templates
 
     permissions:
       contents: write
@@ -17,29 +17,24 @@ jobs:
       id-token: write
 
     steps:
-      # 1️⃣ Checkout your repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Build HTML5 export
       - name: Build HTML5 export
         run: |
           mkdir -p build/web
-          godot --headless --verbose --export-release "HTML5" build/web/index.html
+          godot --headless --verbose --export-release "Web" build/web/index.html
 
-      # 3️⃣ Prepare /debug site folder
       - name: Prepare /debug site folder
         run: |
           mkdir -p public/debug
           cp -r build/web/* public/debug/
 
-      # 4️⃣ Upload artifact for GitHub Pages
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
-      # 5️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
