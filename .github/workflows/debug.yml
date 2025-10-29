@@ -6,7 +6,7 @@ on: push
 env:
   GODOT_VERSION: 4.3
   EXPORT_NAME: platformer-v2
-  PROJECT_PATH: platformer-v2
+  PROJECT_PATH: .
 
 jobs:
   export-web:
