@@ -16,9 +16,16 @@ jobs:
       pages: write
       id-token: write
 
-    steps:
+        steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Install Godot 4 export templates manually
+      - name: Install Godot 4 export templates
+        run: |
+          mkdir -p ~/.local/share/godot/templates/4.3.stable
+          wget https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
+          unzip Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/templates/4.3.stable
 
       - name: Build HTML5 export
         run: |
