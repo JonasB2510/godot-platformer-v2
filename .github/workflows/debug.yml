@@ -21,10 +21,12 @@ jobs:
       # 2️⃣ Build Godot HTML5 Export
       # (This uses the marketplace action you linked)
       - name: Build Godot HTML5 export
-        uses: yeslayla/build-godot-action@v1.5.0
+      - uses: yeslayla/build-godot-action@v1.5.0
         with:
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
           export_preset: "HTML5"
+          projectDir: "."        # if project is root
+          debugMode: "false"     # or true if you want debug export
           output_path: build/web
           cache: true
 
