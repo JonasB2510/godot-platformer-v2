@@ -1,13 +1,16 @@
 name: Build & Deploy Godot HTML5 Debug Build
 
 on:
-  workflow_dispatch:   # allows manual trigger
+  workflow_dispatch:
   push:
-    branches: [main]   # or your dev branch
+    branches: [main]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3  # Run inside Godot 4.3 Docker container
+
     permissions:
       contents: write
       pages: write
@@ -18,32 +21,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up Godot and export templates (abarichello/godot-ci)
-      - name: godot-ci
-        uses: abarichello/godot-ci@3.6.2-stable
-        with:
-          version: 4.3
-          export-templates: true
-
-      # 3️⃣ Build your Godot project for HTML5
+      # 2️⃣ Build HTML5 export
       - name: Build HTML5 export
         run: |
           mkdir -p build/web
           godot --headless --verbose --export-release "HTML5" build/web/index.html
 
-      # 4️⃣ Prepare /debug site folder
+      # 3️⃣ Prepare /debug site folder
       - name: Prepare /debug site folder
         run: |
           mkdir -p public/debug
           cp -r build/web/* public/debug/
 
-      # 5️⃣ Upload artifact for GitHub Pages
+      # 4️⃣ Upload artifact for GitHub Pages
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
-      # 6️⃣ Deploy to GitHub Pages
+      # 5️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
