@@ -2,7 +2,7 @@ name: "Debug build"
 
 on:
   push:
-    branches: ["main"] # or change to your branch name
+    branches: ["main"] # or another branch if you prefer
 
 env:
   GODOT_VERSION: 4.3
@@ -10,16 +10,10 @@ env:
   PROJECT_PATH: .
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  contents: write  # needed to push to gh-pages
 
 jobs:
-  build:
+  build-debug:
     runs-on: ubuntu-24.04
     container:
       image: barichello/godot-ci:4.3
@@ -35,28 +29,18 @@ jobs:
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable \
              ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
 
-      - name: Export Web Build
+      - name: Export Debug Web Build
         run: |
           mkdir -pv build/debug
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/debug/index.html"
+          godot --headless --verbose --export-debug "Web" "$EXPORT_DIR/debug/index.html"
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy Debug Build to /debug 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: build
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          branch: gh-pages          # Branch your site is published from
+          folder: build/debug       # Deploy only this folder
+          target-folder: debug      # Upload to /debug/ subfolder
+          clean: false              # 👈 Don't delete existing files (main release stays)
+          token: ${{ secrets.GITHUB_TOKEN }}
