@@ -1,4 +1,4 @@
-name: Build & Deploy Godot HTML5 Debug Build
+name: Debug Build
 
 on:
   workflow_dispatch:
@@ -9,26 +9,21 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.3  # Godot 4.3 + export templates
+      image: barichello/godot-ci:4.3  # Using Godot 4.3 container with templates
 
     permissions:
       contents: write
       pages: write
       id-token: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install Godot 4 export templates manually
-      - name: Install Godot 4 export templates
-        run: |
-          mkdir -p ~/.local/share/godot/templates/4.3.stable
-          wget https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
-          unzip Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/templates/4.3.stable
-
-      - name: Build HTML5 export
+      - name: Build Web export
         run: |
           mkdir -p build/web
+          # Adjust the preset name "Web" to your exact preset
           godot --headless --verbose --export-release "Web" build/web/index.html
 
       - name: Prepare /debug site folder
