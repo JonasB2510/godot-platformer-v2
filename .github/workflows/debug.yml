@@ -20,7 +20,7 @@ jobs:
 
       # 2️⃣ Set up Godot and export templates (abarichello/godot-ci)
       - name: godot-ci
-        uses: abarichello/godot-ci@gh-actions
+        uses: abarichello/godot-ci@3.6.2-stable
         with:
           version: 4.3
           export-templates: true
