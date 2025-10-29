@@ -15,35 +15,35 @@ jobs:
 
     steps:
       # 1️⃣ Checkout your repository
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Build Godot HTML5 Export
-      # (This uses the marketplace action you linked)
-      - name: Build Godot HTML5 export
-        uses: yeslayla/build-godot-action@v1.5.0
+      # 2️⃣ Set up Godot 4.x using barichello/godot-ci
+      - name: Setup Godot
+        uses: barichello/godot-ci@v4.1.0
         with:
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
-          export_preset: "HTML5"
-          projectDir: "."        # if project is root
-          debugMode: "false"     # or true if you want debug export
-          output_path: build/web
-          cache: true
+          version: 4.3
+          export-templates: true  # Automatically install export templates
 
-      # 3️⃣ Prepare debug subfolder
+      # 3️⃣ Build the HTML5 export
+      - name: Export HTML5 build
+        run: |
+          mkdir -p build/web
+          godot --headless --verbose --export-release "HTML5" build/web/index.html
+
+      # 4️⃣ Prepare /debug site folder
       - name: Prepare /debug site folder
         run: |
           mkdir -p public/debug
           cp -r build/web/* public/debug/
-          mv public/debug/index.html public/debug/index.html
 
-      # 4️⃣ Upload artifact for GitHub Pages
+      # 5️⃣ Upload artifact for GitHub Pages
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
-      # 5️⃣ Deploy to GitHub Pages
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
