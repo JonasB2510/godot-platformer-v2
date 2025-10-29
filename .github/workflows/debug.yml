@@ -42,10 +42,6 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/debug/index.html"
 
-      - name: Add redirect for subpath
-        run: |
-          echo '<meta http-equiv="refresh" content="0; url=./debug/">' > build/index.html
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
