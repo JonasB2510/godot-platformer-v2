@@ -1,7 +1,7 @@
 name: Build & Deploy Godot HTML5 Debug Build
 
 on:
-  workflow_dispatch:   # manual trigger
+  workflow_dispatch:   # allows manual trigger
   push:
     branches: [main]   # or your dev branch
 
@@ -18,15 +18,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up Godot 4.x using barichello/godot-ci
-      - name: Setup Godot
-        uses: barichello/godot-ci@v4.1.0
+      # 2️⃣ Set up Godot and export templates (abarichello/godot-ci)
+      - name: godot-ci
+        uses: abarichello/godot-ci@gh-actions
         with:
           version: 4.3
-          export-templates: true  # Automatically install export templates
+          export-templates: true
 
-      # 3️⃣ Build the HTML5 export
-      - name: Export HTML5 build
+      # 3️⃣ Build your Godot project for HTML5
+      - name: Build HTML5 export
         run: |
           mkdir -p build/web
           godot --headless --verbose --export-release "HTML5" build/web/index.html
