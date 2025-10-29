@@ -1,6 +1,7 @@
 name: "Debug build"
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"] # or another branch if you prefer
 
