@@ -6,6 +6,8 @@ on:
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 permissions:
   contents: write
+  id-token: write
+  pages: write
 
 env:
   GODOT_VERSION: 4.4.1
