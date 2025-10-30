@@ -38,7 +38,7 @@ jobs:
         with:
           branch: gh-pages
           folder: build/web/debug
-          path: debug
+          target-folder: debug
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
