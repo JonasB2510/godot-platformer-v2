@@ -36,8 +36,9 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: web
-          path: build/web/debug
+          branch: gh-pages
+          folder: build/web/debug
+          target-folder: debug
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
