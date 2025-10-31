@@ -37,7 +37,7 @@ jobs:
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/debug/index.html"
       - name: Prepare page
         run: |
-          mkdir public
+          mkdir public/debug
           mv "$EXPORT_DIR/web/debug/platformerv2.html public/debug/index.html || true
 
       - name: Upload to GitHub Pages
