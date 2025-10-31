@@ -38,7 +38,7 @@ jobs:
       - name: Prepare page
         run: |
           mkdir -p public/debug
-          mv "$EXPORT_DIR/web/debug/platformerv2.html public/debug/index.html || true
+          mv "$EXPORT_DIR/web/debug/platformerv2.html public/debug/index.html" || true
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
