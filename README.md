@@ -6,8 +6,8 @@
 ```
 python -m http.server
 ```
-or go to:
-[The offical page](https://platformer.jonasb2510.de)
+or play on:
+[The offical website](https://platformer.jonasb2510.de)
 
 ## Supported versions:
 - Web-Version (Downloadable in the releases tab)
