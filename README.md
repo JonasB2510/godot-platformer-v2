@@ -8,6 +8,7 @@ python -m http.server
 ```
 or play on:
 [The offical website](https://platformer.jonasb2510.de)
+
 or play:
 [The debug build](https://platformer.jonasb2510.de/debug) (the latest push)
 
