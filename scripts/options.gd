@@ -63,7 +63,7 @@ func set_bus_volume_percent(bus_name: String, percent: float) -> void:
 	# Map 0–100% directly to -80 dB to 0 dB
 	var db = lerp(-10.0, 5.0, percent / 100.0)
 	if percent == 0:
-		db ^= -80
+		db = -80
 	
 	var bus_index = AudioServer.get_bus_index(bus_name)
 	AudioServer.set_bus_volume_db(bus_index, db)
