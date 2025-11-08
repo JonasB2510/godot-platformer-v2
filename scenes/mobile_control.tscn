@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://rmj5lcve4uvw"]
+[gd_scene load_steps=5 format=3 uid="uid://rmj5lcve4uvw"]
 
 [ext_resource type="Texture2D" uid="uid://cpys27pejjehb" path="res://assets/sprites/left-arrow.png" id="1_fiqgl"]
 [ext_resource type="Texture2D" uid="uid://bfhh6f7seo3wo" path="res://assets/sprites/right-arrow.png" id="2_a1hw4"]
 [ext_resource type="Texture2D" uid="uid://l3mwd0cf2kgl" path="res://assets/sprites/up-arrow.png" id="3_a1hw4"]
+[ext_resource type="Texture2D" uid="uid://dxk4t12jidgo4" path="res://assets/sprites/red-cross-squircle.png" id="4_xjkva"]
 
 [node name="Mobile" type="Control"]
 layout_mode = 3
@@ -31,19 +32,14 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Left" type="TextureButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 0
-focus_mode = 0
+[node name="Left" type="TouchScreenButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 texture_normal = ExtResource("1_fiqgl")
+action = "player_left"
 
-[node name="Right" type="TextureButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 0
-focus_mode = 0
+[node name="Right" type="TouchScreenButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+position = Vector2(40.333, 0)
 texture_normal = ExtResource("2_a1hw4")
+action = "player_right"
 
 [node name="VBoxContainerRight" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 3
@@ -62,8 +58,19 @@ scale = Vector2(3, 3)
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainerRight"]
 layout_mode = 2
 
-[node name="Up" type="TextureButton" parent="CanvasLayer/VBoxContainerRight/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-focus_mode = 0
+[node name="Up" type="TouchScreenButton" parent="CanvasLayer/VBoxContainerRight/HBoxContainer"]
 texture_normal = ExtResource("3_a1hw4")
+action = "player_jump"
+
+[node name="VBoxContainerUpRight" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 80.0
+offset_bottom = 82.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainerUpRight"]
+layout_mode = 2
+
+[node name="Exit" type="TouchScreenButton" parent="CanvasLayer/VBoxContainerUpRight/HBoxContainer"]
+position = Vector2(7, 7)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_xjkva")
+action = "close_ui"

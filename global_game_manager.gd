@@ -14,7 +14,7 @@ func _ready() -> void:
 	timer.start()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("close_ui"):
 		if player:
 			if not menu_instance:
 				menu_instance = MENU_SCENE.instantiate()

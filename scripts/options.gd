@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("close_ui"):
 		saveConfig()
 		
 func saveConfig():
@@ -84,4 +84,4 @@ func _on_sfx_value_changed(value: float) -> void:
 
 func _on_exit_pressed() -> void:
 	saveConfig()
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

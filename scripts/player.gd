@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("player_jump") or (has_node("Mobile/CanvasLayer/VBoxContainerRight/HBoxContainer/Up") and get_node("Mobile/CanvasLayer/VBoxContainerRight/HBoxContainer/Up").button_pressed):
+	if Input.is_action_just_pressed("player_jump"): #or (has_node("Mobile/CanvasLayer/VBoxContainerRight/HBoxContainer/Up") and get_node("Mobile/CanvasLayer/VBoxContainerRight/HBoxContainer/Up").button_pressed)
 		if is_on_floor() and not input_disabled:
 			velocity.y = JUMP_VELOCITY
 		#print("space")
@@ -37,11 +37,11 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("player_left", "player_right")
-	if has_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Left") and get_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Left").button_pressed:
-		direction = -1
+	#if has_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Left") and get_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Left").button_pressed:
+	#	direction = -1
 		#print("links du sibbi")
-	if has_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Right") and get_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Right").button_pressed:
-		direction = 1
+	#if has_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Right") and get_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Right").button_pressed:
+	#	direction = 1
 		#print("rechts du sibbi")
 	#if not get_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Left").button_pressed and not get_node("Mobile/CanvasLayer/VBoxContainer/HBoxContainer/Right").button_pressed:
 	#	direction = Input.get_axis("player_left", "player_right")
