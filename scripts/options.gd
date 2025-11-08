@@ -77,3 +77,7 @@ func _on_music_value_changed(value: float) -> void:
 
 func _on_sfx_value_changed(value: float) -> void:
 	set_bus_volume_percent("SFX", value)
+
+
+func _on_exit_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

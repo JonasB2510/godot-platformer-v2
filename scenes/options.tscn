@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd202nu3my80f"]
+[gd_scene load_steps=6 format=3 uid="uid://dd202nu3my80f"]
 
 [ext_resource type="Script" uid="uid://ditvu1f0ewvwf" path="res://scripts/options.gd" id="1_2iy26"]
 [ext_resource type="FontFile" uid="uid://dnxlscub8ly7q" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_kv8mn"]
 [ext_resource type="FontFile" uid="uid://xux3xfr3ypdx" path="res://assets/fonts/PixelOperator8.ttf" id="3_1sggn"]
+[ext_resource type="StyleBox" uid="uid://dlylifh8na7gj" path="res://styles/button_style_hover_1.tres" id="4_1sggn"]
+[ext_resource type="StyleBox" uid="uid://gcex4d8ps4va" path="res://styles/button_style_1.tres" id="5_e6vpq"]
 
 [node name="Options" type="Control"]
 z_index = 100
@@ -124,6 +126,19 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.08, 2.08)
 
+[node name="Exit" type="Button" parent="Panel"]
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 201.0
+offset_bottom = 93.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_1sggn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = ExtResource("4_1sggn")
+theme_override_styles/normal = ExtResource("5_e6vpq")
+text = "EXIT"
+
 [connection signal="value_changed" from="Panel/VBoxContainer/Master/Master" to="." method="_on_master_value_changed"]
 [connection signal="value_changed" from="Panel/VBoxContainer/Music/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="Panel/VBoxContainer/SFX/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="Panel/Exit" to="." method="_on_exit_pressed"]
