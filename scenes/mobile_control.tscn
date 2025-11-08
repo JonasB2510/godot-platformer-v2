@@ -64,5 +64,6 @@ layout_mode = 2
 
 [node name="Up" type="TextureButton" parent="CanvasLayer/VBoxContainerRight/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
 focus_mode = 0
 texture_normal = ExtResource("3_a1hw4")
