@@ -1,13 +1,28 @@
-name: Deploy Godot HTML5 build to GitHub Pages
+name: Godot Web Export and Deploy
 
 on:
-  workflow_dispatch:   # allows manual trigger
+  push:
+  workflow_dispatch:
   release:
-    types: [published] # runs automatically on new release
+    types: [published]
+
+permissions:
+  contents: write
+  id-token: write
+  pages: write
+
+env:
+  GODOT_VERSION: 4.4.1
+  EXPORT_NAME: platformer-v2
+  PROJECT_PATH: "."
 
 jobs:
-  deploy:
+  deploy-release:
+    name: Deploy Release ZIP to Pages
     runs-on: ubuntu-latest
+    #needs: export-web  # ensures debug build runs first
+    if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+
     permissions:
       contents: read
       pages: write
@@ -30,13 +45,13 @@ jobs:
         run: |
           mkdir public
           unzip *.zip -d public
-          mv public/platformerv2.html public/index.html
+          mv public/platformerv2.html public/index.html || true
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy Release to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
