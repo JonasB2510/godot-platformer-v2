@@ -12,16 +12,19 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
-		var config = ConfigFile.new()
-		config.set_value("volume", "master", master_slider.value)
-		config.set_value("volume", "music", music_slider.value)
-		config.set_value("volume", "sfx", sfx_slider.value)
-		config.set_value("control", "mobile_control", mobile_switch.button_pressed)
-		config.save("user://settings.cfg")
-		#if get_node("/root/Game"):
-		#	get_node("/root/GlobalGameManager").toggle_options()
-		#else:
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		saveConfig()
+		
+func saveConfig():
+	var config = ConfigFile.new()
+	config.set_value("volume", "master", master_slider.value)
+	config.set_value("volume", "music", music_slider.value)
+	config.set_value("volume", "sfx", sfx_slider.value)
+	config.set_value("control", "mobile_control", mobile_switch.button_pressed)
+	config.save("user://settings.cfg")
+	#if get_node("/root/Game"):
+	#	get_node("/root/GlobalGameManager").toggle_options()
+	#else:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func load_config():
 	var config = ConfigFile.new()
@@ -80,4 +83,5 @@ func _on_sfx_value_changed(value: float) -> void:
 
 
 func _on_exit_pressed() -> void:
+	saveConfig()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
