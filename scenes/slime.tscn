@@ -64,7 +64,7 @@ animations = [{
 size = Vector2(14, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n6pvg"]
-radius = 5.03891
+radius = 7.01004
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6pvg"]
 size = Vector2(8, 8)
@@ -75,9 +75,8 @@ script = ExtResource("1_n6pvg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_v5wyi")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame = 2
 
 [node name="Killzone" parent="." instance=ExtResource("2_n6pvg")]
 position = Vector2(0, -12)

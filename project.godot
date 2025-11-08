@@ -11,6 +11,9 @@ config_version=5
 [application]
 
 config/name="Platformer V2"
+config/name_localized={
+"de": "Platformer V2"
+}
 run/main_scene="uid://cp6r8oclvyk1u"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -51,6 +54,10 @@ close_ui={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/locale_filter_mode=1
 
 [rendering]
 

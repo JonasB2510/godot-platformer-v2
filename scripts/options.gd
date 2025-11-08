@@ -3,19 +3,24 @@ extends Control
 @onready var master_slider: HSlider = $Panel/VBoxContainer/Master/Master
 @onready var music_slider: HSlider = $Panel/VBoxContainer/Music/Music
 @onready var sfx_slider: HSlider = $Panel/VBoxContainer/SFX/SFX
+@onready var mobile_switch: CheckButton = $Panel/VBoxContainer/MobileControl/MobileSwitch
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_config()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		var config = ConfigFile.new()
 		config.set_value("volume", "master", master_slider.value)
 		config.set_value("volume", "music", music_slider.value)
 		config.set_value("volume", "sfx", sfx_slider.value)
+		config.set_value("control", "mobile_control", mobile_switch.button_pressed)
 		config.save("user://settings.cfg")
+		#if get_node("/root/Game"):
+		#	get_node("/root/GlobalGameManager").toggle_options()
+		#else:
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func load_config():
@@ -26,6 +31,7 @@ func load_config():
 		config.set_value("volume", "master", 100)
 		config.set_value("volume", "music", 100)
 		config.set_value("volume", "sfx", 100)
+		config.set_value("control", "mobile_control", false)
 
 		# Save to disk
 		var err2 = config.save("user://settings.cfg")
@@ -45,12 +51,14 @@ func load_config():
 	var sfx_volume = config.get_value("volume", "sfx", 100)
 	sfx_slider.set_value_no_signal(sfx_volume)
 	#set_bus_volume_percent("SFX", sfx_volume)
+	var mobile_control = config.get_value("control", "mobile_control", false)
+	mobile_switch.button_pressed = mobile_control
 
 func set_bus_volume_percent(bus_name: String, percent: float) -> void:
 	percent = clamp(percent, 0.0, 100.0)
 	
 	# Map 0–100% directly to -80 dB to 0 dB
-	var db = lerp(-10.0, 6.0, percent / 100.0)
+	var db = lerp(-10.0, 5.0, percent / 100.0)
 	if percent == 0:
 		db = -80
 	

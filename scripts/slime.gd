@@ -43,9 +43,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _on_kill_enemie_body_entered(body: Node2D) -> void:
+func _on_kill_enemie_body_entered(_body: Node2D) -> void:
 	killzone.queue_free()
 	kill_enemie.queue_free()
+	animated_sprite.play("death")
 	timer.wait_time = 0.02
 	audio_stream_player_2d.play()
 	player.jump()
