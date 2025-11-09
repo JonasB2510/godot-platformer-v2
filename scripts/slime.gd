@@ -4,6 +4,7 @@ const SPEED = 60
 var direction = 1
 var is_dead = false
 #const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -100.0
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
@@ -14,6 +15,7 @@ var is_dead = false
 @onready var timer: Timer = $Timer
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var player: CharacterBody2D = %Player
+@onready var game_manager: Node = %GameManager
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -21,9 +23,18 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if ray_cast_right.is_colliding():
-		direction = -1
+		var action = ray_cast_right.get_collider().get_meta("action", "hitbox")
+		if action == "hitbox":
+			direction = -1
+		elif action == "jump":
+			velocity.y = JUMP_VELOCITY
+		
 	elif ray_cast_left.is_colliding():
-		direction = 1
+		var action = ray_cast_left.get_collider().get_meta("action", "hitbox")
+		if action == "hitbox":
+			direction = 1
+		elif action == "jump":
+			velocity.y = JUMP_VELOCITY
 	
 	if direction > 0:
 		animated_sprite.flip_h = false
@@ -46,6 +57,7 @@ func _physics_process(delta: float) -> void:
 func _on_kill_enemie_body_entered(_body: Node2D) -> void:
 	killzone.queue_free()
 	kill_enemie.queue_free()
+	game_manager.add_point()
 	animated_sprite.play("death")
 	timer.wait_time = 0.02
 	audio_stream_player_2d.play()
