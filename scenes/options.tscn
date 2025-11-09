@@ -127,6 +127,7 @@ grow_vertical = 2
 scale = Vector2(2.08, 2.08)
 
 [node name="Exit" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 12.0
 offset_right = 201.0

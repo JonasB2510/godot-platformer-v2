@@ -33,7 +33,7 @@ func load_config():
 	optionsScriptInstance.set_bus_volume_percent("SFX", sfx_volume)
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/level2.tscn")
+	get_tree().change_scene_to_file("res://scenes/level1.tscn")
 
 func _on_option_pressed() -> void:
 	accept_dialog.title = "Information"
