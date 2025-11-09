@@ -367,7 +367,7 @@ position = Vector2(535, -120)
 nextLevel = "res://scenes/level3.tscn"
 
 [node name="Platform" parent="." instance=ExtResource("6_cleqw")]
-position = Vector2(744, -44)
+position = Vector2(750, -44)
 
 [node name="EnemieInteract" type="Node" parent="."]
 
