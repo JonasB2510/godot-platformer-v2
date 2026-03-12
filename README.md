@@ -15,4 +15,4 @@ or play:
 ## Supported versions:
 - Web-Version (Downloadable in the releases tab)
 - Windows-Version
-- Debug in the godot editor (Probably everything that support OpenGL)
+- Debug in the godot editor (Probably everything that supports OpenGL)
